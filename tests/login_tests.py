@@ -18,31 +18,33 @@ class LoginPageTests(unittest.TestCase):
     def tearDown(self):
         self.webdriver.quit()
 
+    # Test case 001
     def test_login_page(self):
         login_page = LoginPage(self.webdriver)
-        login_page.is_login_page()
         login_page.set_user(self.test_user)
         login_page.set_password(self.test_password)
         login_page.log_in()
 
+    # Test case 002
     def test_no_password(self):
         login_page = LoginPage(self.webdriver)
-        login_page.is_login_page()
         login_page.set_user(self.test_user)
         login_page.click_login_button()
+        self.assertTrue(login_page.is_login_page())
         self.assertTrue(login_page.has_error(self.MESSAGE), 'Wrong error message displayed')
 
     def test_no_user(self):
         login_page = LoginPage(self.webdriver)
-        login_page.is_login_page()
         login_page.set_password(self.test_password)
         login_page.click_login_button()
+        self.assertTrue(login_page.is_login_page())
         self.assertTrue(login_page.has_error(self.MESSAGE), 'Wrong error message displayed')
 
     def test_no_user_or_password(self):
         login_page = LoginPage(self.webdriver)
         login_page.is_login_page()
         login_page.click_login_button()
+        self.assertTrue(login_page.is_login_page())
         self.assertTrue(login_page.has_error(self.MESSAGE), 'Wrong error message displayed')
 
 
